@@ -1,0 +1,73 @@
+import turtle as t
+import csv
+t.hideturtle()
+a = t.Screen()
+a.setup(1100,600)
+def f(x, y):
+    if y<250 or y>291:
+        print('wrong')
+    else:
+        if -450<=x<=-350:
+            t.fillcolor('red')
+        elif -250<=x<=-150:
+            t.fillcolor('blue')
+        elif -50<=x<=50:
+            t.fillcolor('green')
+def ud(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+def s():
+    t.fd(100)
+    t.left(90)
+    t.fd(40)
+    t.left(90)
+    t.fd(100)
+    t.left(90)
+    t.fd(40)
+def b(x,y,z):
+    ud(x,y)
+    t.fillcolor(z)
+    t.begin_fill()
+    s()
+    t.end_fill()
+    ud(x+45,y+15)
+    t.write(z)
+def n(x,y,z):
+    t.fd(20)
+    d=t.position()
+    ud(d[0],d[1]-20)
+    t.write(x)
+    ud(d[0],d[1]-30)
+    t.write(y)
+    ud(d[0],d[1])
+    t.begin_fill()
+    t.left(90)
+    t.fd(z)
+    t.right(90)
+    t.fd(20)
+    t.right(90)
+    t.fd(z)
+    t.end_fill()
+    t.left(90)
+    t.fd(30)
+b(-450,250,'red')
+t.left(90)
+b(-250,250,'blue')
+t.left(90)
+b(-50,250,'green')
+t.onscreenclick(f)
+ud(-300,-100)
+t.left(90)
+fi=open('C:\\Users\\98922\\Desktop\\New folder (2)\\تمرین 8\\text1.csv','r')
+m=[]
+for i in csv.reader(fi):
+    name=i[0]
+    lname=i[1]
+    c=0
+    for j in i[2:]:
+        c+=int(j)
+    m.append((name,lname,c))
+for i in m:
+    n(i[0],i[1],(i[2]/500000))   
+t.mainloop()
